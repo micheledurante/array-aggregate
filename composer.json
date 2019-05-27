@@ -2,7 +2,7 @@
   "name": "micheled/array-group-by",
   "description": "Extends the standard PHP lib with moar array functions",
   "type": "library",
-  "keywords": ["PHP", "PHP array functions", "extended PHP array functions"],
+  "keywords": ["PHP", "array functions"],
   "homepage": "https://github.com/micheledurante/array-group-by",
   "license": "GNU GPLv3",
   "authors": [
