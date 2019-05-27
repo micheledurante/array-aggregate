@@ -6,23 +6,6 @@ use PHPUnit\Framework\TestCase;
 
 class ArrayGroupByTest extends TestCase
 {
-    /**
-     * @test
-     * @dataProvider anEmptyArrayReturnsEmpty
-     * @dataProvider singleItemArrayIsUnchanged
-     * @dataProvider columnsAreCheckedStrictly
-     * @dataProvider unorderedDatasetsCannotBeGrouped
-     * @dataProvider orderedGroupOfRowsAtTheBeginning
-     * @dataProvider orderedGroupOfRowsInTheMiddle
-     * @dataProvider orderedGroupOfRowsAtTheEnd
-     * @param array $testData
-     * @param array $expectedOutput
-     */
-    public function testArrayGroupByOutput(array $testData, array $expectedOutput)
-    {
-        $this->assertEquals($expectedOutput, array_group_by('id', $testData));
-    }
-
     public function anEmptyArrayReturnsEmpty(): array
     {
         return [
@@ -171,5 +154,22 @@ class ArrayGroupByTest extends TestCase
                 ]
             ]
         ];
+    }
+
+    /**
+     * @test
+     * @dataProvider anEmptyArrayReturnsEmpty
+     * @dataProvider singleItemArrayIsUnchanged
+     * @dataProvider columnsAreCheckedStrictly
+     * @dataProvider unorderedDatasetsCannotBeGrouped
+     * @dataProvider orderedGroupOfRowsAtTheBeginning
+     * @dataProvider orderedGroupOfRowsInTheMiddle
+     * @dataProvider orderedGroupOfRowsAtTheEnd
+     * @param array $testData
+     * @param array $expectedOutput
+     */
+    public function testArrayGroupByOutput(array $testData, array $expectedOutput)
+    {
+        $this->assertEquals($expectedOutput, array_group_by('id', $testData));
     }
 }
