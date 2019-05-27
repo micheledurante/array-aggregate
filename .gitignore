@@ -1,0 +1,8 @@
+#IDE files
+.idea/
+
+# Libs
+vendor/
+
+#PHPUnit
+*.cache
