@@ -1,8 +1,8 @@
 <?php
 /**
  * Groups sorted rows of an array with a stream aggregate function into a single row for each group of rows that have
- * the same value for the provided columns. If no user function is provided, the first matching item in a group will be
- * returned.
+ * the same value for the provided columns. If no user function is provided, the first matching item of the group will
+ * be returned.
  *
  * Note that array_group_by() expects the array rows to be sorted on the columns to be used for grouping and columns are
  * checked strictly.
@@ -42,6 +42,6 @@ function array_group_by(array $columns, array $array, callable $group_func = nul
         }
     }
 
-    $groups[] = $group_func !== null ? $group_func($bucket) : $bucket[0];
+    $groups[] = $group_func !== null ? $group_func($bucket) : $bucket[0]; // empty whatever is left
     return $groups;
 }
