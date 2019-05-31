@@ -1,19 +1,19 @@
 <?php
 /**
  * Groups sorted rows of an array with a stream aggregate function into a single row for each group of rows that have
- * the same value for the provided column. If no user function is provided, the first matching item in a group will be
+ * the same value for the provided columns. If no user function is provided, the first matching item in a group will be
  * returned.
  *
- * Note that array_group_by() expects the array rows to be sorted on the column to be used for grouping and columns are
+ * Note that array_group_by() expects the array rows to be sorted on the columns to be used for grouping and columns are
  * checked strictly.
  *
- * @param mixed $column
+ * @param array $columns
  * @param array $array
  * @param callable|null $group_func
  * @return array
  */
 
-function array_group_by($column, array $array, callable $group_func = null): array
+function array_group_by(array $columns, array $array, callable $group_func = null): array
 {
     if (empty($array)) return [];
 
@@ -21,7 +21,18 @@ function array_group_by($column, array $array, callable $group_func = null): arr
     $bucket[] = $array[0]; // initialize bucket
 
     for ($i = 1, $max = count($array); $i < $max; $i++) {
-        if ($array[$i][$column] === $array[$i - 1][$column]) {
+        $match = false;
+
+        foreach ($columns as $column) {
+            if ($array[$i][$column] === $array[$i - 1][$column]) {
+                $match = true;
+            } else {
+                $match = false;
+                break; // all columns must be equal
+            }
+        }
+
+        if ($match) {
             $bucket[] = $array[$i];
             continue;
         } else {

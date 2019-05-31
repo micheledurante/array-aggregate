@@ -4,7 +4,7 @@ namespace tests\unit;
 
 use PHPUnit\Framework\TestCase;
 
-class ArrayGroupByTest extends TestCase
+class ArrayGroupBySingleColumnTest extends TestCase
 {
     public function anEmptyArrayReturnsEmpty(): array
     {
@@ -170,6 +170,6 @@ class ArrayGroupByTest extends TestCase
      */
     public function testArrayGroupByOutput(array $testData, array $expectedOutput)
     {
-        $this->assertEquals($expectedOutput, array_group_by('id', $testData));
+        $this->assertEquals($expectedOutput, array_group_by(array('id'), $testData));
     }
 }
