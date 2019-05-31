@@ -4,8 +4,13 @@ namespace tests\unit;
 
 use PHPUnit\Framework\TestCase;
 
-class ArrayGroupByMultipleColumnsTest extends TestCase
+class ArrayGroupByMultipleTest extends TestCase
 {
+    /**
+     * For empty inputs the function should do nothing.
+     *
+     * @return array
+     */
     public function anEmptyArrayReturnsEmpty(): array
     {
         return [
@@ -13,6 +18,11 @@ class ArrayGroupByMultipleColumnsTest extends TestCase
         ];
     }
 
+    /**
+     * Single-element arrays cannot be grouped.
+     *
+     * @return array
+     */
     public function singleItemArrayIsUnchanged(): array
     {
         return [
@@ -27,22 +37,30 @@ class ArrayGroupByMultipleColumnsTest extends TestCase
         ];
     }
 
+    /**
+     * Types are respected when checking for rows equality.
+     *
+     * @return array
+     */
     public function columnsAreCheckedStrictly(): array
     {
         return [
             'Columns are checked strictly' => [
                 [
-                    0 => ['id' => 1, 'name' => 'foo'],
-                    1 => ['id' => '1', 'name' => 'bar']
+                    0 => ['id' => 1, 's_id' => 1, 'name' => 'foo'],
+                    1 => ['id' => '1', 's_id' => 1, 'name' => 'bar']
                 ],
                 [
-                    ['id' => 1, 'name' => 'foo'],
-                    ['id' => '1', 'name' => 'bar']
+                    ['id' => 1, 's_id' => 1, 'name' => 'foo'],
+                    ['id' => '1', 's_id' => 1, 'name' => 'bar']
                 ]
             ]
         ];
     }
 
+    /**
+     * @return array
+     */
     public function orderedGroupOfRowsAtTheBeginning(): array
     {
         return [
@@ -64,6 +82,9 @@ class ArrayGroupByMultipleColumnsTest extends TestCase
         ];
     }
 
+    /**
+     * @return array
+     */
     public function uniqueGroups(): array
     {
         return [
@@ -97,6 +118,8 @@ class ArrayGroupByMultipleColumnsTest extends TestCase
     }
 
     /**
+     * It must be possible to group rows by more than 1 column.
+     *
      * @test
      * @dataProvider anEmptyArrayReturnsEmpty
      * @dataProvider singleItemArrayIsUnchanged
@@ -109,5 +132,22 @@ class ArrayGroupByMultipleColumnsTest extends TestCase
     public function testArrayGroupByMultiple(array $testData, array $expectedOutput)
     {
         $this->assertEquals($expectedOutput, array_group_by(array('id', 's_id'), $testData));
+    }
+
+    /**
+     * The order in which group parameters are given to the function must not affect the output.
+     *
+     * @test
+     * @dataProvider anEmptyArrayReturnsEmpty
+     * @dataProvider singleItemArrayIsUnchanged
+     * @dataProvider columnsAreCheckedStrictly
+     * @dataProvider orderedGroupOfRowsAtTheBeginning
+     * @dataProvider uniqueGroups
+     * @param array $testData
+     * @param array $expectedOutput
+     */
+    public function testArrayGroupByMultipleSwitchedOrder(array $testData, array $expectedOutput)
+    {
+        $this->assertEquals($expectedOutput, array_group_by(array('s_id', 'id'), $testData));
     }
 }

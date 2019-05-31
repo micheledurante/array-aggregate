@@ -4,8 +4,13 @@ namespace tests\unit;
 
 use PHPUnit\Framework\TestCase;
 
-class ArrayGroupBySingleColumnTest extends TestCase
+class ArrayGroupBySingleTest extends TestCase
 {
+    /**
+     * For empty inputs the function should do nothing.
+     *
+     * @return array
+     */
     public function anEmptyArrayReturnsEmpty(): array
     {
         return [
@@ -13,6 +18,11 @@ class ArrayGroupBySingleColumnTest extends TestCase
         ];
     }
 
+    /**
+     * Single-element arrays cannot be grouped.
+     *
+     * @return array
+     */
     public function singleItemArrayIsUnchanged(): array
     {
         return [
@@ -27,6 +37,11 @@ class ArrayGroupBySingleColumnTest extends TestCase
         ];
     }
 
+    /**
+     * Types are respected when checking for rows equality.
+     *
+     * @return array
+     */
     public function columnsAreCheckedStrictly(): array
     {
         return [
@@ -43,6 +58,11 @@ class ArrayGroupBySingleColumnTest extends TestCase
         ];
     }
 
+    /**
+     * Not working for unordered rows.
+     *
+     * @return array
+     */
     public function unorderedDatasetsCannotBeGrouped(): array
     {
         return [
@@ -93,6 +113,9 @@ class ArrayGroupBySingleColumnTest extends TestCase
         ];
     }
 
+    /**
+     * @return array
+     */
     public function orderedGroupOfRowsAtTheBeginning(): array
     {
         return [
@@ -114,6 +137,9 @@ class ArrayGroupBySingleColumnTest extends TestCase
         ];
     }
 
+    /**
+     * @return array
+     */
     public function orderedGroupOfRowsInTheMiddle(): array
     {
         return [
@@ -135,6 +161,9 @@ class ArrayGroupBySingleColumnTest extends TestCase
         ];
     }
 
+    /**
+     * @return array
+     */
     public function orderedGroupOfRowsAtTheEnd(): array
     {
         return [
@@ -157,6 +186,8 @@ class ArrayGroupBySingleColumnTest extends TestCase
     }
 
     /**
+     * It must be possible to group rows by a 1 column.
+     *
      * @test
      * @dataProvider anEmptyArrayReturnsEmpty
      * @dataProvider singleItemArrayIsUnchanged
