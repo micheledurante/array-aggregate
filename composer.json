@@ -2,10 +2,9 @@
   "name": "micheledurante/array-aggregate",
   "description": "A PHP, SQL-like stream aggregate function to group a set of rows by any number of columns. You can also define how to compute groups",
   "type": "library",
-  "version": "1.0.0",
   "keywords": ["PHP", "array functions", "stream aggregate", "group by"],
   "homepage": "https://github.com/micheledurante/array-aggregate",
-  "license": "GNU GPLv3",
+  "license": "GPL-3.0-or-later",
   "authors": [
     {
       "name": "Michele Durante",
