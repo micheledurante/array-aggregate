@@ -189,6 +189,7 @@ class ArrayGroupBySingleTest extends TestCase
      * It must be possible to group rows by a 1 column.
      *
      * @test
+     * @covers \array_group_by
      * @dataProvider anEmptyArrayReturnsEmpty
      * @dataProvider singleItemArrayIsUnchanged
      * @dataProvider columnsAreCheckedStrictly

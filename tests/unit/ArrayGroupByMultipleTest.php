@@ -121,6 +121,7 @@ class ArrayGroupByMultipleTest extends TestCase
      * It must be possible to group rows by more than 1 column.
      *
      * @test
+     * @covers \array_group_by
      * @dataProvider anEmptyArrayReturnsEmpty
      * @dataProvider singleItemArrayIsUnchanged
      * @dataProvider columnsAreCheckedStrictly
@@ -138,6 +139,7 @@ class ArrayGroupByMultipleTest extends TestCase
      * The order in which group parameters are given to the function must not affect the output.
      *
      * @test
+     * @covers \array_group_by
      * @dataProvider anEmptyArrayReturnsEmpty
      * @dataProvider singleItemArrayIsUnchanged
      * @dataProvider columnsAreCheckedStrictly
