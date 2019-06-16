@@ -1,6 +1,7 @@
 # array_aggregate
-
-[![Build Status](https://travis-ci.org/micheledurante/array-aggregate.svg?branch=master)](https://travis-ci.org/micheledurante/array-aggregate) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Build Status](https://travis-ci.org/micheledurante/array-aggregate.svg?branch=master)](https://travis-ci.org/micheledurante/array-aggregate)
+[![Latest Stable Version](https://img.shields.io/packagist/php-v/micheledurante/array-aggregate.svg)](https://packagist.org/packages/micheledurante/array-aggregate)
+[![Latest Stable Version](https://img.shields.io/packagist/v/micheledurante/array-aggregate.svg)](https://packagist.org/packages/micheledurante/array-aggregate)
 
 A PHP, SQL-like stream aggregate function to group a set of rows by any number of columns. You can also define how to 
 compute groups. Rows are expected to be already sorted on the columns used to aggregate results.
@@ -14,6 +15,15 @@ operator.
 
 Inspired by Craig Freedman's SQL articles on MS dev blog 
 https://blogs.msdn.microsoft.com/craigfr/2006/09/13/stream-aggregate.
+
+## Installation
+
+As a composer package:
+```
+composer require micheledurante/array-aggregate
+```
+
+Or require the source file in `src/array_aggregate.php`.
 
 ## Usage
 
