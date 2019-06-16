@@ -4,7 +4,7 @@ namespace tests\unit;
 
 use PHPUnit\Framework\TestCase;
 
-class ArrayGroupBySingleTest extends TestCase
+class ArrayAggregateSingleTest extends TestCase
 {
     /**
      * For empty inputs the function should do nothing.
@@ -14,7 +14,10 @@ class ArrayGroupBySingleTest extends TestCase
     public function anEmptyArrayReturnsEmpty(): array
     {
         return [
-            'An empty array returns empty' => [[], []]
+            'An empty array returns empty' => [
+                [],
+                []
+            ]
         ];
     }
 
@@ -28,7 +31,7 @@ class ArrayGroupBySingleTest extends TestCase
         return [
             'Single-item array is unchanged' => [
                 [
-                    0 => ['id' => 1, 'name' => 'foo']
+                    ['id' => 1, 'name' => 'foo']
                 ],
                 [
                     ['id' => 1, 'name' => 'foo']
@@ -47,8 +50,8 @@ class ArrayGroupBySingleTest extends TestCase
         return [
             'Columns are checked strictly' => [
                 [
-                    0 => ['id' => 1, 'name' => 'foo'],
-                    1 => ['id' => '1', 'name' => 'bar']
+                    ['id' => 1, 'name' => 'foo'],
+                    ['id' => '1', 'name' => 'bar']
                 ],
                 [
                     ['id' => 1, 'name' => 'foo'],
@@ -68,9 +71,9 @@ class ArrayGroupBySingleTest extends TestCase
         return [
             'Unordered set 1' => [
                 [
-                    0 => ['id' => 1, 'name' => 'foo'],
-                    1 => ['id' => 2, 'name' => 'bar'],
-                    2 => ['id' => 1, 'name' => 'baz']
+                    ['id' => 1, 'name' => 'foo'],
+                    ['id' => 2, 'name' => 'bar'],
+                    ['id' => 1, 'name' => 'baz']
                 ],
                 [
                     ['id' => 1, 'name' => 'foo'],
@@ -80,11 +83,11 @@ class ArrayGroupBySingleTest extends TestCase
             ],
             'Unordered set 2' => [
                 [
-                    0 => ['id' => 1, 'name' => 'foo'],
-                    1 => ['id' => 2, 'name' => 'bar'],
-                    2 => ['id' => 3, 'name' => 'baz'],
-                    3 => ['id' => 2, 'name' => 'foobar'],
-                    4 => ['id' => 1, 'name' => 'barbaz']
+                    ['id' => 1, 'name' => 'foo'],
+                    ['id' => 2, 'name' => 'bar'],
+                    ['id' => 3, 'name' => 'baz'],
+                    ['id' => 2, 'name' => 'foobar'],
+                    ['id' => 1, 'name' => 'barbaz']
                 ],
                 [
                     ['id' => 1, 'name' => 'foo'],
@@ -96,11 +99,11 @@ class ArrayGroupBySingleTest extends TestCase
             ],
             'Unordered set 3' => [
                 [
-                    0 => ['id' => 1, 'name' => 'foo'],
-                    1 => ['id' => 5, 'name' => 'bar'],
-                    2 => ['id' => 3, 'name' => 'baz'],
-                    3 => ['id' => 2, 'name' => 'foobar'],
-                    4 => ['id' => 4, 'name' => 'barbaz']
+                    ['id' => 1, 'name' => 'foo'],
+                    ['id' => 5, 'name' => 'bar'],
+                    ['id' => 3, 'name' => 'baz'],
+                    ['id' => 2, 'name' => 'foobar'],
+                    ['id' => 4, 'name' => 'barbaz']
                 ],
                 [
                     ['id' => 1, 'name' => 'foo'],
@@ -121,11 +124,11 @@ class ArrayGroupBySingleTest extends TestCase
         return [
             'Ordered set at the beginning' => [
                 [
-                    0 => ['id' => 1, 'name' => 'foo'],
-                    1 => ['id' => 1, 'name' => 'bar'],
-                    2 => ['id' => 2, 'name' => 'baz'],
-                    3 => ['id' => 3, 'name' => 'foobar'],
-                    4 => ['id' => 4, 'name' => 'barbaz']
+                    ['id' => 1, 'name' => 'foo'],
+                    ['id' => 1, 'name' => 'bar'],
+                    ['id' => 2, 'name' => 'baz'],
+                    ['id' => 3, 'name' => 'foobar'],
+                    ['id' => 4, 'name' => 'barbaz']
                 ],
                 [
                     ['id' => 1, 'name' => 'foo'],
@@ -145,11 +148,11 @@ class ArrayGroupBySingleTest extends TestCase
         return [
             'Ordered set in the middle' => [
                 [
-                    0 => ['id' => 1, 'name' => 'foo'],
-                    1 => ['id' => 2, 'name' => 'bar'],
-                    2 => ['id' => 2, 'name' => 'baz'],
-                    3 => ['id' => 3, 'name' => 'foobar'],
-                    4 => ['id' => 4, 'name' => 'barbaz']
+                    ['id' => 1, 'name' => 'foo'],
+                    ['id' => 2, 'name' => 'bar'],
+                    ['id' => 2, 'name' => 'baz'],
+                    ['id' => 3, 'name' => 'foobar'],
+                    ['id' => 4, 'name' => 'barbaz']
                 ],
                 [
                     ['id' => 1, 'name' => 'foo'],
@@ -169,11 +172,11 @@ class ArrayGroupBySingleTest extends TestCase
         return [
             'Ordered set at the end' => [
                 [
-                    0 => ['id' => 1, 'name' => 'foo'],
-                    1 => ['id' => 2, 'name' => 'bar'],
-                    2 => ['id' => 3, 'name' => 'baz'],
-                    3 => ['id' => 4, 'name' => 'foobar'],
-                    4 => ['id' => 4, 'name' => 'barbaz']
+                    ['id' => 1, 'name' => 'foo'],
+                    ['id' => 2, 'name' => 'bar'],
+                    ['id' => 3, 'name' => 'baz'],
+                    ['id' => 4, 'name' => 'foobar'],
+                    ['id' => 4, 'name' => 'barbaz']
                 ],
                 [
                     ['id' => 1, 'name' => 'foo'],
@@ -189,7 +192,7 @@ class ArrayGroupBySingleTest extends TestCase
      * It must be possible to group rows by a 1 column.
      *
      * @test
-     * @covers \array_group_by
+     * @covers       \array_aggregate
      * @dataProvider anEmptyArrayReturnsEmpty
      * @dataProvider singleItemArrayIsUnchanged
      * @dataProvider columnsAreCheckedStrictly
@@ -200,8 +203,8 @@ class ArrayGroupBySingleTest extends TestCase
      * @param array $testData
      * @param array $expectedOutput
      */
-    public function testArrayGroupByOutput(array $testData, array $expectedOutput)
+    public function testArrayAggregateOutput(array $testData, array $expectedOutput): void
     {
-        $this->assertEquals($expectedOutput, array_group_by(array('id'), $testData));
+        $this->assertEquals($expectedOutput, array_aggregate(array('id'), $testData));
     }
 }

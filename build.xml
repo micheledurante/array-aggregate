@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="micheledurante/array-aggregate"
+         default="build"
+         description="micheledurante/array-aggregate Build Script"
+         phingVersion="2.*"
+         basedir=".">
+
+    <target name="tests" description="Run unit tests">
+        <echo msg="Running tests..." />
+        <exec command="./vendor/bin/phpunit" dir="." passthru="true" checkreturn="true" />
+        <echo msg="Tests OK." />
+    </target>
+
+    <target name="build" depends="tests">
+        <echo msg="Build OK. Bye!" />
+    </target>
+</project>

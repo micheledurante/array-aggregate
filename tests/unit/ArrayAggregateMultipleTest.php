@@ -4,7 +4,7 @@ namespace tests\unit;
 
 use PHPUnit\Framework\TestCase;
 
-class ArrayGroupByMultipleTest extends TestCase
+class ArrayAggregateMultipleTest extends TestCase
 {
     /**
      * For empty inputs the function should do nothing.
@@ -14,7 +14,10 @@ class ArrayGroupByMultipleTest extends TestCase
     public function anEmptyArrayReturnsEmpty(): array
     {
         return [
-            'An empty array returns empty' => [[], []]
+            'An empty array returns empty' => [
+                [],
+                []
+            ]
         ];
     }
 
@@ -47,8 +50,8 @@ class ArrayGroupByMultipleTest extends TestCase
         return [
             'Columns are checked strictly' => [
                 [
-                    0 => ['id' => 1, 's_id' => 1, 'name' => 'foo'],
-                    1 => ['id' => '1', 's_id' => 1, 'name' => 'bar']
+                    ['id' => 1, 's_id' => 1, 'name' => 'foo'],
+                    ['id' => '1', 's_id' => 1, 'name' => 'bar']
                 ],
                 [
                     ['id' => 1, 's_id' => 1, 'name' => 'foo'],
@@ -121,7 +124,7 @@ class ArrayGroupByMultipleTest extends TestCase
      * It must be possible to group rows by more than 1 column.
      *
      * @test
-     * @covers \array_group_by
+     * @covers       \array_aggregate
      * @dataProvider anEmptyArrayReturnsEmpty
      * @dataProvider singleItemArrayIsUnchanged
      * @dataProvider columnsAreCheckedStrictly
@@ -130,16 +133,16 @@ class ArrayGroupByMultipleTest extends TestCase
      * @param array $testData
      * @param array $expectedOutput
      */
-    public function testArrayGroupByMultiple(array $testData, array $expectedOutput)
+    public function testArrayAggregateByMultiple(array $testData, array $expectedOutput): void
     {
-        $this->assertEquals($expectedOutput, array_group_by(array('id', 's_id'), $testData));
+        $this->assertEquals($expectedOutput, array_aggregate(array('id', 's_id'), $testData));
     }
 
     /**
      * The order in which group parameters are given to the function must not affect the output.
      *
      * @test
-     * @covers \array_group_by
+     * @covers       \array_aggregate
      * @dataProvider anEmptyArrayReturnsEmpty
      * @dataProvider singleItemArrayIsUnchanged
      * @dataProvider columnsAreCheckedStrictly
@@ -148,8 +151,8 @@ class ArrayGroupByMultipleTest extends TestCase
      * @param array $testData
      * @param array $expectedOutput
      */
-    public function testArrayGroupByMultipleSwitchedOrder(array $testData, array $expectedOutput)
+    public function testArrayAggregateByMultipleSwitchedOrder(array $testData, array $expectedOutput): void
     {
-        $this->assertEquals($expectedOutput, array_group_by(array('s_id', 'id'), $testData));
+        $this->assertEquals($expectedOutput, array_aggregate(array('s_id', 'id'), $testData));
     }
 }

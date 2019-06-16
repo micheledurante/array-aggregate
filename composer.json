@@ -1,9 +1,10 @@
 {
-  "name": "micheled/array-group-by",
-  "description": "Extends the standard PHP lib with moar array functions",
+  "name": "micheledurante/array-aggregate",
+  "description": "A PHP, SQL-like stream aggregate function to group a set of rows by any number of columns. You can also define how to compute groups",
   "type": "library",
-  "keywords": ["PHP", "array functions"],
-  "homepage": "https://github.com/micheledurante/array-group-by",
+  "version": "1.0.0",
+  "keywords": ["PHP", "array functions", "stream aggregate", "group by"],
+  "homepage": "https://github.com/micheledurante/array-aggregate",
   "license": "GNU GPLv3",
   "authors": [
     {
@@ -14,6 +15,10 @@
     }
   ],
   "require-dev": {
-    "phpunit/phpunit": "^8.1"
+    "phpunit/phpunit": "^8.1",
+    "phing/phing": "^2.16"
+  },
+  "require": {
+    "php": ">=7.1"
   }
 }

@@ -1,3 +1,3 @@
 <?php
 
-require_once 'array_group_by.php';
+require_once './src/array_aggregate.php';

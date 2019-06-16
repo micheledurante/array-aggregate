@@ -10,9 +10,9 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
-         bootstrap="tests/bootstrap.php">
+         bootstrap="./tests/bootstrap.php">
     <testsuites>
-        <testsuite name="Extended PHP Array Functions Library Test Suite">
+        <testsuite name="micheledurante/array-aggregate Test Suite">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>
