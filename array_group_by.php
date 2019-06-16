@@ -1,30 +1,30 @@
 <?php
 /**
- * Groups sorted rows of an array with a stream aggregate function into a single row for each group of rows that have
- * the same value for the provided columns. If no user function is provided, the first matching item of the group will
- * be returned.
+ * Group rows of an array that have the same value for the provided column(s). If no aggregate function is provided,
+ * the first matching item of the group will be returned.
  *
- * Note that array_group_by() expects the array rows to be sorted on the columns to be used for grouping and columns are
- * checked strictly.
+ * array_group_by() expects the rows to be ordered on the columns used for the grouping.
  *
  * @param array $columns
- * @param array $array
- * @param callable|null $group_func
+ * @param array $rows
+ * @param callable|null $aggregate_func
  * @return array
  */
 
-function array_group_by(array $columns, array $array, callable $group_func = null): array
+function array_group_by(array $columns, array $rows, callable $aggregate_func = null): array
 {
-    if (empty($array)) return [];
+    if (empty($rows)) return [];
+
+    if (empty($columns)) return $rows;
 
     $groups = [];
-    $bucket[] = $array[0]; // initialize bucket
+    $bucket[] = $rows[0]; // initialize bucket
 
-    for ($i = 1, $max = count($array); $i < $max; $i++) {
+    for ($i = 1, $max = count($rows); $i < $max; $i++) {
         $match = false;
 
         foreach ($columns as $column) {
-            if ($array[$i][$column] === $array[$i - 1][$column]) {
+            if ($rows[$i][$column] === $rows[$i - 1][$column]) {
                 $match = true;
             } else {
                 $match = false;
@@ -32,16 +32,14 @@ function array_group_by(array $columns, array $array, callable $group_func = nul
             }
         }
 
-        if ($match) {
-            $bucket[] = $array[$i];
-            continue;
-        } else {
-            $groups[] = $group_func !== null ? $group_func($bucket) : $bucket[0];
+        if (!$match) {
+            $groups[] = $aggregate_func !== null ? $aggregate_func($bucket) : $bucket[0];
             $bucket = [];
-            $bucket[] = $array[$i];
         }
+
+        $bucket[] = $rows[$i];
     }
 
-    $groups[] = $group_func !== null ? $group_func($bucket) : $bucket[0]; // empty whatever is left
+    $groups[] = $aggregate_func !== null ? $aggregate_func($bucket) : $bucket[0]; // empty whatever is left
     return $groups;
 }
