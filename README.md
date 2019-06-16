@@ -3,7 +3,11 @@
 [![Build Status](https://travis-ci.org/micheledurante/array-aggregate.svg?branch=master)](https://travis-ci.org/micheledurante/array-aggregate) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 A PHP, SQL-like stream aggregate function to group a set of rows by any number of columns. You can also define how to 
-compute groups. Rows are expected to be already sorted on the columns used to aggregate results. 
+compute groups. Rows are expected to be already sorted on the columns used to aggregate results.
+
+```php
+function array_aggregate(array $columns, array $rows, callable $compute_func = null): array
+```
 
 The order in which columns are given to the function does not affect the output. Columns must comparable with the `===` 
 operator.
@@ -50,8 +54,6 @@ var_export($groups);
 
 Results in:
 ```php
-var_export($stores);
-
 /*
 array (
     0 => array (
